@@ -1,6 +1,22 @@
-# ac2native - notas para retomar (actualizado 2026-10-02 madrugada)
+# ac2native - notas para retomar (actualizado 2026-10-07)
 
-## Qué NO subir a un repositorio (el .gitignore se borró a petición del usuario, que empieza el repo de cero)
+## Estado general (2026-10-07) — LEER PRIMERO
+Avance: port base ~85 %. Fase 1 (juego completo y estable) ~85 %; Fase 2 (instalador/distribución) ~40 %; Fases 3-5 0 %.
+- Repo git iniciado por el usuario en ac2native/ (rama main, SIN commits aún); `.gitignore` recreado; LICENSE (GPL-2, por
+  defecto, sin confirmar) y README.md (inglés, con Quick start y solución de problemas) creados. Compilación desde una
+  copia limpia de los 61 archivos verificada: gen/ y ejecutable idénticos, capturas idénticas.
+- Se eliminó todo lo de extracción/rework de assets (herramientas, datos y planes de mods). Solo se extraen los 3 ejecutables
+  (tools/extract.py). No volver a proponerlo. También se borró el emulador (ac2launcher + AC2-PC → papelera).
+- Búsqueda automática del disco (runtime/main.cpp find_disc): solo si la ruta guardada no existe; build.sh SIEMPRE exige la ruta.
+- Release: camino A (fuente + instalador) vs B (launcher/motor precompilado + módulo del juego compilado en el PC del usuario con
+  pestaña Setup; hitos M0 medir -O0, M1 módulo dlopen, M2 Setup, M3 empaquetado, M4 Windows) — decisión APLAZADA por el usuario.
+- Pendiente inmediato: (1) efectos de sonido sin sonar en la misión 2 (la música XA va bien; hay huecos largos sin key-on en
+  la SPU) y caídas a 4x; usar los estados del usuario slot2/slot3 y AC2_PERFLOG=1; revisar el desfase 0/1 de
+  tools/test/state2script.py comparando con `--load-state`; (2) jugar resto de misiones y finales; (3) F2.1-F2.7 de PLAN.md;
+  (4) preguntas abiertas: ¿Windows en la 1.0?, nombre público, nombre en el copyright.
+- Entorno: /tmp es RAM (no usar para salidas grandes); pruebas en work/test-out/; disco en `../Rom + BIOS/`.
+
+## Qué NO subir a un repositorio (lista que respalda el .gitignore actual)
 `work/` (derivado del disco), `gen/` (código recompilado: derivado del juego), `build/`,
 `run.log` (763 MB), `trace.txt`, `*.bin *.cue *.iso *.img` (discos/BIOS), `*.ppm *.wav *.raw` (capturas/audio),
 `*.mcd *.mcr *.srm` (tarjetas), `main_old.c.txt`, `__pycache__/`, y restos de editor: `.Rhistory`, `.~lock.*`.
