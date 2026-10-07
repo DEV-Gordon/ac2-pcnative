@@ -1,0 +1,30 @@
+# Generated from your own disc by build.sh — derived from the game, never commit
+work/
+gen/
+
+# Build output and logs
+build/
+trace.txt
+run.log
+*.log
+
+# Disc images, BIOS, memory cards, captures, audio dumps
+*.bin
+*.cue
+*.iso
+*.img
+*.mcd
+*.mcr
+*.srm
+*.ppm
+*.wav
+*.raw
+
+# Old code kept for reference
+main_old.c.txt
+
+# Editor / tool leftovers
+.Rhistory
+.~lock.*
+__pycache__/
+*.pyc
